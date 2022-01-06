@@ -15,6 +15,9 @@ router.post("", async (req, res) => {
 });
 router.get("", async (req, res) => {
   try {
+    const page = +req.query.page || 1;
+
+    const size = +req.query.size || 10;
     const products = await Product.find().lean().exec();
 
     return res.status(201).send(products);
